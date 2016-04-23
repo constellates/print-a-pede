@@ -1,68 +1,38 @@
 #include "Adafruit_Thermal.h"
 
-//Adafruit_Thermal printer1(&Serial);
-Adafruit_Thermal printer2(&Serial1);
-Adafruit_Thermal printer3(&Serial2);
-Adafruit_Thermal printer4(&Serial3);
+Adafruit_Thermal printer1(&Serial1);
+Adafruit_Thermal printer2(&Serial2);
+
+// -----------------------------------------------------------------------
 
 void setup() {
+  Serial2.begin(19200);
+  Serial1.begin(19200);
+  printer2.begin();
+  printer1.begin();
 
-  String str1 = "[1:1] In the beginning when God created the heavens and the earth, [1:2] the earth was a formless void and darkness covered the face of the deep, while a wind from God swept over the face of the waters. [1:3] Then God said, 'Let there be light'; and there was light. [1:4] And God saw that the light was good; and God separated the light from the darkness. [1:5] God called the light Day, and the darkness he called Night. And there was evening and there was morning, the first day. [1:6] And God said, 'Let there be a dome in the midst of the waters, and let it separate the waters from the waters.' [1:7] So God made the dome and separated the waters that were under the dome from the waters that were above the dome. And it was so. [1:8] God called the dome Sky. And there was evening and there was morning, the second day.";
-  String str2 = "In the same way, when the thought 'I' arises in dependence upon mind and body, nothing within mind and body—neither the collection which is a continuum of earlier and later moments, nor the collection of the parts at one time, nor the separate parts, nor the continuum of any of the separate parts—is in even the slightest way the 'I.' Also there is not even the slightest something that is a different entity from mind and body that is apprehendable as the 'I.' Consequently, the 'I' is merely set up by conceptuality in dependence upon mind and body; it is not established by way of its own entity.";
+  // Test inverse on & off
+  printer2.upsideDownOn();
+  printer1.upsideDownOn();
+  printer2.println(F("Who knows, but that the universe is not one vast sea of compassion actually, the veritable holy honey, beneath all this show of personality and cruelty?"));
+  printer1.println(F("Who knows, but that the universe is not one vast sea of compassion actually, the veritable holy honey, beneath all this show of personality and cruelty?"));
+  printer2.upsideDownOff();
+  printer1.upsideDownOff();
   
 
-//  Serial.begin(19200);
-  Serial1.begin(19200);
-  Serial2.begin(19200);
-  Serial3.begin(19200);
+  // Test character double-height on & off
+//  printer.doubleHeightOn();
+//  printer.println(F("Double Height ON"));
+//  printer.doubleHeightOff();
 
-//  printer1.begin();
-  printer2.begin();
-  printer3.begin();
-  printer4.begin();
-
-  int numLines = 20;
-  int lineLength = 30;
-  for (int i = 0; i < numLines; i++) {
-    int offSet = i * lineLength;
-    printline(str1, str2, lineLength, offSet);
-  }
-
-//  printer1.println("test1");
-//  printer2.println("test2");
-//
-//  printer1.feed(2);
   printer2.feed(2);
-  printer3.feed(2);
-  printer4.feed(2);
+  printer1.feed(2);
 
-//  printer1.sleep();
-  printer2.sleep();
-  printer3.sleep();
-  printer4.sleep();
-  delay(3000L);
-//  printer1.wake();
-  printer2.wake();
-  printer3.wake();
-  printer4.wake();
-//  printer1.setDefault();
-  printer2.setDefault();
-  printer3.setDefault();
-  printer4.setDefault();
+//  printer.sleep();
+//  printer.wake();
+  printer2.setDefault(); // Restore printer to defaults
+  printer1.setDefault(); // Restore printer to defaults
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-
-}
-
-void printline(String str1, String str2, int lineLength, int start) {
-  int lineEnd = start + lineLength;
-  String line1 = str1.substring(start, lineEnd);
-  String line2 = str2.substring(start, lineEnd);
-
-//  printer1.print(line1);
-  printer2.print(line2);
-  printer3.print(line1);
-  printer4.print(line2);
 }
