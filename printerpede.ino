@@ -14,6 +14,9 @@ void setup() {
 
   printer1.begin();
   printer2.begin();
+  
+  printer1.upsideDownOn();
+  printer2.upsideDownOn();
 
   int numLines = 20;
   int lineLength = 30;
@@ -22,6 +25,9 @@ void setup() {
     printline(str1, str2, lineLength, offSet);
   }
 
+  printer1.upsideDownOff();
+  printer2.upsideDownOff();
+  
   printer1.feed(2);
   printer2.feed(2);
 
